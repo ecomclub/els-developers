@@ -10,12 +10,17 @@
       "title": {
         "type": "text"
       },
-      "slug": {
+      "repo": {
+        "type": "keyword"
+      },
+      "file": {
         "type": "keyword"
       },
       "short_description": {
-        "type": "text",
-        "index": false
+        "type": "text"
+      },
+      "markdown": {
+        "type": "text"
       }
     }
   }
