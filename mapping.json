@@ -1,22 +1,10 @@
 {
   "devs": {
     "properties": {
-      "date": {
-        "type": "date"
-      },
-      "topics": {
-        "type": "text"
-      },
-      "title": {
-        "type": "text"
-      },
       "repo": {
         "type": "keyword"
       },
-      "file_path": {
-        "type": "keyword"
-      },
-      "short_description": {
+      "path": {
         "type": "text"
       },
       "markdown": {

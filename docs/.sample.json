@@ -1,14 +1,5 @@
 {
-  "date": "2017-12-01T01:00:30.500Z",
-  "topics": [
-    "ecommerce-api",
-    "restful-api",
-    "apiblueprint",
-    "api-documentation"
-  ],
-  "title": "ecomplus api docs",
   "repo": "ecomplus-api-docs",
-  "file_path": "README.md",
-  "short_description": "API Blueprint to E-Com Plus Store API documentation",
+  "path": "README.md",
   "markdown": "# ecomplus-api-docs\nAPI Blueprint to E-Com Plus Store API documentation..."
 }
