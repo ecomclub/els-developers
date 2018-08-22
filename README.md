@@ -6,7 +6,8 @@ it will be synchronized with Elasticsearch cluster by REST API.
 
 # Build
 Run the PHP script `/build/main.php` to build the documents automatically.
-[Readme](https://github.com/ecomclub/els-developers/tree/master/build).
+
+:page_facing_up: [README](https://github.com/ecomclub/els-developers/tree/master/build).
 
 # Technology stack
 + [Elasticsearch](https://www.elastic.co/products/elasticsearch) 6.3
