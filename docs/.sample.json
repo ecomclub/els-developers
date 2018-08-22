@@ -1,12 +1,14 @@
 {
   "date": "2017-12-01T01:00:30.500Z",
-  "keywords": [
-    "coffee",
-    "make",
-    "how to",
-    "diy"
+  "topics": [
+    "ecommerce-api",
+    "restful-api",
+    "apiblueprint",
+    "api-documentation"
   ],
-  "title": "How to make coffee",
-  "slug": "hot-to-make-coffee",
-  "short_description": "Step by step to make a delicious coffee without sugar"
+  "title": "ecomplus api docs",
+  "repo": "ecomplus-api-docs",
+  "file_path": "README.md",
+  "short_description": "API Blueprint to E-Com Plus Store API documentation",
+  "markdown": "# ecomplus-api-docs\nAPI Blueprint to E-Com Plus Store API documentation..."
 }

@@ -4,7 +4,7 @@
       "date": {
         "type": "date"
       },
-      "keywords": {
+      "topics": {
         "type": "text"
       },
       "title": {
@@ -13,7 +13,7 @@
       "repo": {
         "type": "keyword"
       },
-      "file": {
+      "file_path": {
         "type": "keyword"
       },
       "short_description": {
