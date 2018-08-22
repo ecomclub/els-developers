@@ -1,0 +1,22 @@
+{
+  "devs": {
+    "properties": {
+      "date": {
+        "type": "date"
+      },
+      "keywords": {
+        "type": "text"
+      },
+      "title": {
+        "type": "text"
+      },
+      "slug": {
+        "type": "keyword"
+      },
+      "short_description": {
+        "type": "text",
+        "index": false
+      }
+    }
+  }
+}
