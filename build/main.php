@@ -12,9 +12,9 @@ class GitToEls
     private $dir;
 
     /**
-     * construct 
+     * construct
      *
-     * @param array $repos with repositories 
+     * @param array $repos with repositories
      */
     public function __construct(array $repos)
     {
@@ -27,10 +27,10 @@ class GitToEls
     }
 
     /**
-     * curl get request  
+     * curl get request
      *
-     * @param [type] $url api endpoint 
-     * @return object $response 
+     * @param [type] $url api endpoint
+     * @return object $response
      */
     public function request($url)
     {
@@ -38,7 +38,9 @@ class GitToEls
         $reqOptions = [
             CURLOPT_RETURNTRANSFER => 1,
             CURLOPT_URL => $url,
-            CURLOPT_USERAGENT => dirname(__FILE__) . DIRECTORY_SEPARATOR
+            CURLOPT_USERAGENT => dirname(__FILE__) . DIRECTORY_SEPARATOR,
+            CURLOPT_HTTPAUTH => CURLAUTH_BASIC,
+            CURLOPT_USERPWD => 'talissonf:Diamantina8'
         ];
         curl_setopt_array($curl, $reqOptions);
         $response = curl_exec($curl);
@@ -47,11 +49,11 @@ class GitToEls
     }
 
     /**
-     * get md files
+     * get readme file
      *
      * @return array json object $this->data
      */
-    public function getMD()
+    public function getReadMe()
     {
         $count = count($this->repoToFind);
         for ($i=0; $i < $count; $i++) {
@@ -67,17 +69,55 @@ class GitToEls
     }
 
     /**
-     * save array $this->data in a file 
+     * get md files
+     *
+     * @return array json object $this->data
+     */
+    public function getRepositoryContent()
+    {
+        $count = count($this->repoToFind);
+        for ($i=0; $i < $count; $i++) {
+            $url = $this->gitPath . $this->repoToFind[$i] .'/contents';
+            $response = (object)json_decode($this->request($url));
+            
+            foreach ($response as $resp) {
+                if ($this->isMDFile($resp->name)) {
+                    $mdfile = (object)json_decode($this->request($resp->url));
+                    $this->data[$i][] = [
+                        "repo" => $this->repoToFind[$i],
+                        "path" => $mdfile->name,
+                        "markdown" => base64_decode(str_replace(["\n"], [""], (string)$mdfile->content))
+                    ];
+                }
+            }
+        }
+        // debug
+        //return $this->data;
+    }
+
+    /**
+     * verify if file is a .md
+     *
+     * @param [type] $file
+     * @return boolean
+     */
+    public function isMDFile($file)
+    {
+        return substr($file, -3) === ".md" ? true : false;
+    }
+
+    /**
+     * save array $this->data in a file
      *
      * @return void
      */
     public function saveMD()
     {
         $count = count($this->data);
-        for ($i=0; $i < $count; $i++) { 
-            $file = fopen($this->dir . $this->data[$i]['repo'].".json", "w");
+        for ($i=0; $i < $count; $i++) {
+            $file = fopen($this->dir . $this->data[$i][0]['repo'].".json", "w");
             fwrite($file, json_encode($this->data[$i]));
-            echo "save {$this->data[$i]['repo']} repository.\n";
+            echo "INFO: Save {$this->data[$i][0]['repo']} repository.\n";
             fclose($file);
         }
     }
@@ -101,5 +141,5 @@ $a = [
 ];
 
 $g = new GitToEls($a);
-$g->getMD();
+$g->getRepositoryContent();
 $g->saveMD();
