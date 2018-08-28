@@ -8,13 +8,14 @@ class GitToEls
 {
     private $repoToFind = [];
     private $gitPath = 'https://api.github.com/repos/ecomclub/';
+    private $pagination = 1;
     private $data;
     private $dir;
 
     /**
-     * construct 
+     * construct
      *
-     * @param array $repos with repositories 
+     * @param array $repos with repositories
      */
     public function __construct(array $repos)
     {
@@ -27,10 +28,10 @@ class GitToEls
     }
 
     /**
-     * curl get request  
+     * curl get request
      *
-     * @param [type] $url api endpoint 
-     * @return object $response 
+     * @param [type] $url api endpoint
+     * @return object $response
      */
     public function request($url)
     {
@@ -38,7 +39,9 @@ class GitToEls
         $reqOptions = [
             CURLOPT_RETURNTRANSFER => 1,
             CURLOPT_URL => $url,
-            CURLOPT_USERAGENT => dirname(__FILE__) . DIRECTORY_SEPARATOR
+            CURLOPT_USERAGENT => dirname(__FILE__) . DIRECTORY_SEPARATOR,
+            CURLOPT_HTTPAUTH => CURLAUTH_BASIC,
+            CURLOPT_USERPWD => @$argv[1].':'.@$argv[2]
         ];
         curl_setopt_array($curl, $reqOptions);
         $response = curl_exec($curl);
@@ -47,59 +50,67 @@ class GitToEls
     }
 
     /**
-     * get md files
-     *
-     * @return array json object $this->data
-     */
-    public function getMD()
-    {
-        $count = count($this->repoToFind);
-        for ($i=0; $i < $count; $i++) {
-            $url = $this->gitPath . $this->repoToFind[$i] .'/readme';
-            $response = (object)json_decode($this->request($url));
-            $this->data[] = [
-                "repo" => $this->repoToFind[$i],
-                "path" => $response->name,
-                "markdown" => base64_decode(str_replace(["\n"], [""], (string)$response->content))
-            ];
-        }
-        return $this->data;
-    }
-
-    /**
-     * save array $this->data in a file 
+     * search for all md files on repository
      *
      * @return void
      */
-    public function saveMD()
+    public function search()
+    {
+        $url = "https://api.github.com/search/code?q=user:ecomclub+extension:md+language:Markdown&type=Code&page={$this->pagination}&per_page=100";//page=2&per_page=100
+        $response = (object)json_decode($this->request($url));
+        if (!empty($response->items)) {
+            foreach ($response->items as $item) {
+                if (in_array($item->repository->name, $this->repoToFind)) {
+                    if ($this->isMD($item->name)) {
+                        $md = (object)json_decode($this->request($item->url));
+                        $this->data[] = [
+                            "repo" => $item->repository->name,
+                            "path" => $md->path,
+                            "markdown" => base64_decode((string)$md->content)
+                        ];
+                    }
+                }
+            }
+            ++$this->pagination;
+            $this->search();
+        }
+    }
+
+    /**
+     * verify if file is a .md
+     *
+     * @param [type] $file
+     * @return boolean
+     */
+    public function isMD($file)
+    {
+        return substr($file, -3) === ".md" ? true : false;
+    }
+
+    /**
+     * save array $this->data in a file
+     *
+     * @return void
+     */
+    public function save()
     {
         $count = count($this->data);
-        for ($i=0; $i < $count; $i++) { 
-            $file = fopen($this->dir . $this->data[$i]['repo'].".json", "w");
-            fwrite($file, json_encode($this->data[$i]));
-            echo "save {$this->data[$i]['repo']} repository.\n";
-            fclose($file);
+        if ($count) {
+            for ($i=0; $i < $count; $i++) {
+                if (!file_exists($this->dir . $this->data[$i]['repo'])) {
+                    mkdir($this->dir . $this->data[$i]['repo'], 0777, true);
+                }
+                $file = fopen($this->dir . $this->data[$i]['repo'].'/'.str_replace(["/"], ["-"], $this->data[$i]['path']).".json", "w");
+                fwrite($file, json_encode($this->data[$i], JSON_PRETTY_PRINT));
+                echo "INFO: Save {$this->data[$i]['repo']} repository.\n";
+                fclose($file);
+            }
         }
     }
 }
 
 // using
-$a = [
-    "ecomplus-sdk-js",
-    "ecomplus-store-render",
-    "ecomplus-search-api-docs",
-    "ecomplus-api-docs",
-    "ecomplus-store-template",
-    "ecomplus-graphs-api-docs",
-    "storage-api",
-    "storefront-app",
-    "ecomplus-passport",
-    "ecomplus-passport-client",
-    "webhooks-queue",
-    "modules-api",
-    "ecomplus-neo4j"
-];
-
-$g = new GitToEls($a);
-$g->getMD();
-$g->saveMD();
+$repos = ["ecomplus-sdk-js","ecomplus-store-render","ecomplus-search-api-docs","ecomplus-api-docs","ecomplus-store-template","ecomplus-graphs-api-docs","storage-api","storefront-app","ecomplus-passport","ecomplus-passport-client","webhooks-queue","modules-api","ecomplus-neo4j"];
+$git = new GitToEls($repos);
+$git->search();
+$git->save();
