@@ -1,0 +1,5 @@
+{
+    "repo": "ecomplus-store-template",
+    "path": "methods\/README.md",
+    "markdown": "# JavaScript methods API\n\n## Pages\n1. [Storefront theme](.\/..\/)\n2. [Template structure](.\/..\/structure\/)\n3. [JavaScript methods API](.\/..\/methods\/)\n4. [Implement a search engine](.\/..\/search\/)\n\n{% raw %}\n\n{% endraw %}\n"
+}

@@ -1,0 +1,5 @@
+{
+    "repo": "ecomplus-search-api-docs",
+    "path": "hercule.md",
+    "markdown": ":[](index.apib)\n\n:[](overview.apib)\n\n:[](items.apib)\n\n:[](terms.apib)\n"
+}
