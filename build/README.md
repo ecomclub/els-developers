@@ -2,7 +2,7 @@
 
 1. GET repositories content from
 [GitHub API](https://developer.github.com/v3/repos/contents/#get-contents).
-2. Parse to JSON documents and save files inside `/docs` directory.
+2. Parse to JSON documents and save files inside `/docs/{repo}` directory.
 
 Only Markdown (`.md`) files should be read (but **not only README** files),
 save the repository name, full file path and content on JSON documents, such as
