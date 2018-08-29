@@ -22,3 +22,8 @@ save the repository name, full file path and content on JSON documents, such as
 + [webhooks-queue](https://github.com/ecomclub/webhooks-queue)
 + [modules-api](https://github.com/ecomclub/modules-api)
 + [ecomplus-neo4j](https://github.com/ecomclub/ecomplus-neo4j)
+
+## Run script
+```bash
+php -f main.php github_user github_pass
+```
