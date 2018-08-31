@@ -7,6 +7,7 @@
 class GitToEls
 {
     private $repoToFind = [];
+    private $gitPath = 'https://api.github.com/repos/ecomclub/';
     private $pagination = 1;
     private $data;
     private $dir;
@@ -83,7 +84,7 @@ class GitToEls
      */
     public function isMD($file)
     {
-        return ($file[0] != '.' && substr($file, -3) === '.md') ? true : false;
+        return substr($file, -3) === ".md" ? true : false;
     }
 
     /**
