@@ -1,0 +1,5 @@
+{
+    "repo": "ecomplus-search-api-docs",
+    "path": "terms\/README.md",
+    "markdown": "## Group Terms\n\n### Terms Object Map\n\nThe `terms` type has the\n[mapping](https:\/\/www.elastic.co\/guide\/en\/elasticsearch\/reference\/current\/mapping.html) above:\n\n```javascript\n'terms': {\n  'properties': {\n    'date': {\n      'type': 'date'\n    },\n    'term': {\n      'type': 'text'\n    },\n    'results': {\n      'type': 'short'\n    },\n    'count': {\n      'type': 'integer'\n    }\n  }\n}\n```\n"
+}

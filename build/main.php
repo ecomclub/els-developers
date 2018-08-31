@@ -107,10 +107,3 @@ class GitToEls
         }
     }
 }
-/*
-Using
-$repos = ["ecomplus-sdk-js","ecomplus-store-render","ecomplus-search-api-docs","ecomplus-api-docs","ecomplus-store-template","ecomplus-graphs-api-docs","storage-api","storefront-app","ecomplus-passport","ecomplus-passport-client","webhooks-queue","modules-api","ecomplus-neo4j"];
-$git = new GitToEls($repos);
-$git->search();
-$git->save();
-*/
