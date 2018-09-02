@@ -100,11 +100,28 @@ class GitToEls
     {
         $count = count($this->data);
         if ($count) {
-            for ($i=0; $i < $count; $i++) {
-                if (!file_exists($this->dir . $this->data[$i]['repo'])) {
-                    mkdir($this->dir . $this->data[$i]['repo'], 0777, true);
+            // new files to save
+            // clear old files
+            // remove all saved directories (repos)
+            $olds = scandir($this->dir);
+            foreach ($olds as $path) {
+                $repoDir = $this->dir . '/' . $path;
+                if (filetype($repoDir) === 'dir') {
+                    $objects = scandir($repoDir);
+                    foreach ($objects as $object) {
+                        $filename = $repoDir . '/' . $object;
+                        if (is_file($filename)) unlink($filename);
+                    }
                 }
-                $filename = $this->dir . $this->data[$i]['repo'] . '/' .
+            }
+
+            for ($i = 0; $i < $count; $i++) {
+                $repoDir = $this->dir . $this->data[$i]['repo'];
+                if (!file_exists($repoDir)) {
+                    mkdir($repoDir, 0777, true);
+                }
+                // save new JSON files
+                $filename = $repoDir . '/' .
                             // remove bars to escape for URL
                             str_replace('/', '-', $this->data[$i]['path']) . '.json';
                 $file = fopen($filename, 'w');
