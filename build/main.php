@@ -20,7 +20,7 @@ class GitToEls
     public function __construct(array $repos)
     {
         if (empty($repos) || !is_array($repos)) {
-            throw new Exception("Is required passed a array with repositories names.");
+            throw new Exception('Is required to pass an array with repositories names.');
         }
 
         $this->dir = dirname(__DIR__) . '/docs/';
@@ -41,7 +41,7 @@ class GitToEls
             CURLOPT_URL => $url,
             CURLOPT_USERAGENT => dirname(__FILE__) . DIRECTORY_SEPARATOR,
             CURLOPT_HTTPAUTH => CURLAUTH_BASIC,
-            CURLOPT_USERPWD => @$argv[1].':'.@$argv[2]
+            CURLOPT_USERPWD => @$argv[1] . ':' . @$argv[2]
         ];
         curl_setopt_array($curl, $reqOptions);
         $response = curl_exec($curl);
@@ -56,7 +56,11 @@ class GitToEls
      */
     public function search()
     {
-        $url = "https://api.github.com/search/code?q=user:ecomclub+extension:md+language:Markdown&type=Code&page={$this->pagination}&per_page=100";//page=2&per_page=100
+        $url = 'https://api.github.com/search/code' .
+               '?q=user:ecomclub+extension:md+language:Markdown' .
+               '&type=Code' .
+               // page=2&per_page=100
+               '&page=' . $this->pagination . '&per_page=100';
         $response = (object)json_decode($this->request($url));
         if (!empty($response->items)) {
             foreach ($response->items as $item) {
@@ -64,9 +68,9 @@ class GitToEls
                     if ($this->isMD($item->name)) {
                         $md = (object)json_decode($this->request($item->url));
                         $this->data[] = [
-                            "repo" => $item->repository->name,
-                            "path" => $md->path,
-                            "markdown" => base64_decode((string)$md->content)
+                            'repo' => $item->repository->name,
+                            'path' => $md->path,
+                            'markdown' => base64_decode((string)$md->content)
                         ];
                     }
                 }
@@ -84,7 +88,7 @@ class GitToEls
      */
     public function isMD($file)
     {
-        return substr($file, -3) === ".md" ? true : false;
+        return substr($file, -3) === '.md' ? true : false;
     }
 
     /**
@@ -100,7 +104,10 @@ class GitToEls
                 if (!file_exists($this->dir . $this->data[$i]['repo'])) {
                     mkdir($this->dir . $this->data[$i]['repo'], 0777, true);
                 }
-                $file = fopen($this->dir . $this->data[$i]['repo'].'/'.str_replace(["/"], ["-"], $this->data[$i]['path']).".json", "w");
+                $filename = $this->dir . $this->data[$i]['repo'] . '/' .
+                            // remove bars to escape for URL
+                            str_replace('/', '-', $this->data[$i]['path']) . '.json';
+                $file = fopen($filename, 'w');
                 fwrite($file, json_encode($this->data[$i], JSON_PRETTY_PRINT));
                 echo "INFO: Save {$this->data[$i]['repo']} repository.\n";
                 fclose($file);
@@ -109,7 +116,21 @@ class GitToEls
     }
 }
 
-$repos = ["ecomplus-sdk-js","ecomplus-store-render","ecomplus-search-api-docs","ecomplus-api-docs","ecomplus-store-template","ecomplus-graphs-api-docs","storage-api","storefront-app","ecomplus-passport","ecomplus-passport-client","webhooks-queue","modules-api","ecomplus-neo4j"];
+$repos = [
+  'ecomplus-sdk-js',
+  'ecomplus-store-render',
+  'ecomplus-search-api-docs',
+  'ecomplus-api-docs',
+  'ecomplus-store-template',
+  'ecomplus-graphs-api-docs',
+  'storage-api',
+  'storefront-app',
+  'ecomplus-passport',
+  'ecomplus-passport-client',
+  'webhooks-queue',
+  'modules-api',
+  'ecomplus-neo4j'
+];
 $git = new GitToEls($repos);
 $git->search();
-$git->save(); 
+$git->save();
