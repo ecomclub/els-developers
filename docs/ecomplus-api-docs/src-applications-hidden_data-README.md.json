@@ -1,0 +1,5 @@
+{
+    "repo": "ecomplus-api-docs",
+    "path": "src\/applications\/hidden_data\/README.md",
+    "markdown": "## Group Application Hidden Data\n\n`.applications.hidden_data`\n\nUse the **hidden_data** subresource to read and update an\nspecific app private data, such as tokens and secret keys\n\n### Application Hidden Data Object [\/applications\/schema\/hidden_data.json]\n\nThis endpoint is **schema free**, it means that you can send any valid JSON object,\nthe only limitations are to store up to 3000 properties in the data object and obey\n[MongoDB document limits](https:\/\/docs.mongodb.com\/manual\/reference\/limits\/#bson-documents)\n\n#### JSON Schema [GET]\n\n:[](.json-schema.apib)\n\n### Hidden Data of an Application [\/applications\/{application}\/hidden_data.json]\n\n*\/applications\/[_id]\/hidden_data.json*\n\n> Authentication<br>_GET_, _PATCH_: **required**\n\n#### Read Application Hidden Data [GET]\n\n:[](.read-application-hidden-data.apib)\n\n#### Edit Application Hidden Data [PATCH]\n\n:[](.edit-application-hidden-data.apib)\n"
+}

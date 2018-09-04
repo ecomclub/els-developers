@@ -1,5 +1,5 @@
 {
     "repo": "ecomplus-api-docs",
     "path": "README.md",
-    "markdown": "# ecomplus-api-docs\nAPI Blueprint to E-Com Plus Store API documentation\n\n# Online documentation\nhttps:\/\/ecomstore.docs.apiary.io\/#\n"
+    "markdown": "# ecomplus-api-docs\nAPI Blueprint to E-Com Plus Store API documentation\n\n# Setting up\nInstall [Hercule](https:\/\/github.com\/jamesramsay\/hercule)\nand [Drafter](https:\/\/github.com\/apiaryio\/drafter.js),\nthen give permissions to shell script:\n\n```bash\nchmod +x build.sh\n```\n\n## Build doc files\n```bash\n.\/build.sh\n```\n\n# Online documentation\nhttps:\/\/developers.e-com.plus\/reference\/store\n\nhttps:\/\/ecomstore.docs.apiary.io\/#\n"
 }

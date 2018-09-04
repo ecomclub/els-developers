@@ -1,0 +1,5 @@
+{
+    "repo": "ecomplus-api-docs",
+    "path": "src\/authenticate-app\/README.md",
+    "markdown": "## Group Authenticate App\n\nThis authentication method is provided to\n[E-Com Plus Addons](https:\/\/addons.e-com.plus\/) registered apps,\nfor admin users authentication see\n[Authenticate Yourself](#reference\/authenticate-yourself)\n\n### Authenticate With Callback [\/_callback.json]\n\nWill return null response with 204 status code,\ntoken and ID will be sent to application `auth_callback_uri`\nwith a __POST callback__ request\n\nThe callback body will follow the model below:\n```json\n{\n  \"my_id\": \"100000000000000000000012\",\n  \"access_token\": \"eyJhbGciOi.eyYzdWIi.ZEONFh7HgQ\",\n  \"expires\": \"2017-12-02T08:02:17-05:00\"\n}\n```\n\nGenerated token is valid for one day, as defined by *expires* ISO 8601 date and time,\nthen you will need to generate another token\n\n#### Request Access Token [POST]\n\n:[](.request-access-token.apib)\n"
+}

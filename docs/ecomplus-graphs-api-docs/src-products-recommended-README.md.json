@@ -1,0 +1,5 @@
+{
+    "repo": "ecomplus-graphs-api-docs",
+    "path": "src\/products\/recommended\/README.md",
+    "markdown": "### Recommended [\/products\/{_id}\/recommended.json]\n\nTakes the defined `_id_` by reference and returns up to 12\nrecommended products, selecting the products that was more\ntimes bought together with the reference product\n\nYou should use it to do something like _\"who bought it, bought too\"_\n\n#### List Recommended Items [GET]\n\n:[](.list-recommended-items.apib)\n"
+}

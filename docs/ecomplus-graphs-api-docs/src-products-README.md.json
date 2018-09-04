@@ -1,0 +1,5 @@
+{
+    "repo": "ecomplus-graphs-api-docs",
+    "path": "src\/products\/README.md",
+    "markdown": "## Group Products\n\n[Products](https:\/\/ecomstore.docs.apiary.io\/#reference\/products)\nconnected data based on\n[orders](https:\/\/ecomstore.docs.apiary.io\/#reference\/orders) and\n[categories](https:\/\/ecomstore.docs.apiary.io\/#reference\/categories)\nauto-synchronized from a merchant's store\n\n:[](recommended\/blueprint.apib)\n\n:[](related\/blueprint.apib)\n"
+}

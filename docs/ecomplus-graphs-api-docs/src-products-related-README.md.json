@@ -1,0 +1,5 @@
+{
+    "repo": "ecomplus-graphs-api-docs",
+    "path": "src\/products\/related\/README.md",
+    "markdown": "### Related [\/products\/{_id}\/related.json]\n\nTakes the defined `_id` by reference and returns up to 12\nrelated products, selecting the products that have more\ncategories in common with the reference product\n\nYou should use it to do something like _\"you can also be interested by\"_\n\n#### List Related Items [GET]\n\n:[](.list-related-items.apib)\n"
+}

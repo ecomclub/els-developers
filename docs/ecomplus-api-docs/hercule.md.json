@@ -1,5 +1,0 @@
-{
-    "repo": "ecomplus-api-docs",
-    "path": "hercule.md",
-    "markdown": ":[](index.apib)\n\n:[](overview.apib)\n\n:[](authenticate-yourself.apib)\n\n:[](authenticate-app.apib)\n\n:[](products.apib)\n\n:[](brands.apib)\n\n:[](categories.apib)\n\n:[](collections.apib)\n\n:[](grids.apib)\n\n:[](customers.apib)\n\n:[](carts.apib)\n\n:[](carts\/items.apib)\n\n:[](orders.apib)\n\n:[](applications.apib)\n\n:[](applications\/data.apib)\n\n:[](applications\/hidden_data.apib)\n\n:[](triggers.apib)\n\n:[](procedures.apib)\n\n:[](stores.apib)\n\n:[](authentications.apib)\n"
-}

@@ -1,0 +1,5 @@
+{
+    "repo": "ecomplus-api-docs",
+    "path": "src\/applications\/data\/README.md",
+    "markdown": "## Group Application Data\n\n`.applications.data`\n\nUse the **data** subresource to read and update an specific app data in\na merchant's store\n\n### Application Data Object [\/applications\/schema\/data.json]\n\nThis endpoint is **schema free**, it means that you can send any valid JSON object,\nthe only limitations are to store up to 3000 properties in the data object and obey\n[MongoDB document limits](https:\/\/docs.mongodb.com\/manual\/reference\/limits\/#bson-documents)\n\n#### JSON Schema [GET]\n\n:[](.json-schema.apib)\n\n### Data of an Application [\/applications\/{application}\/data.json]\n\n*\/applications\/[_id]\/data.json*\n\n> Authentication<br>_GET_, _PATCH_: **required**\n\n#### Read Application Data [GET]\n\n:[](.read-application-data.apib)\n\n#### Edit Application Data [PATCH]\n\n:[](.edit-application-data.apib)\n"
+}

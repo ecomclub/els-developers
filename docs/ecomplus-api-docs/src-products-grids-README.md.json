@@ -1,0 +1,5 @@
+{
+    "repo": "ecomplus-api-docs",
+    "path": "src\/products\/grids\/README.md",
+    "markdown": "## Group Product Grids\n\n`.products.grids`\n\nUse **grids** subresource (of *products* resource)\nto edit *grids* property of a specific product by ID, at this point you can\nadd and update titles of grids used with specifications and variations of the product\n\n### Product Grids Object [\/products\/schema\/grids.json]\n\n:[](.product-grids-object.apib)\n\n#### JSON Schema [GET]\n\n:[](.json-schema.apib)\n\n### Grids of a Product [\/products\/{product}\/grids.json]\n\n*\/products\/[_id]\/grids.json*\n\n> Authentication<br>_GET_, _PATCH_: **required**\n\nNo URL parameters available at this endpoint\n\nIn read requests, response body will follow\n[model above](#reference\/product-grids\/product-grid-object),\nfor editing, request body must obey the same specifications\n\n#### Read Product Grids [GET]\n\n:[](.read-product-grids.apib)\n\n#### Edit Product Grids [PATCH]\n\n:[](.edit-product-grids.apib)\n"
+}

@@ -1,5 +1,5 @@
 {
     "repo": "ecomplus-graphs-api-docs",
     "path": "README.md",
-    "markdown": "# ecomplus-graphs-api-docs\nAPI Blueprint to E-Com Plus Graphs API documentation \n\n# Online documentation\nhttps:\/\/ecomgraphs.docs.apiary.io\/#\n"
+    "markdown": "# ecomplus-graphs-api-docs\nAPI Blueprint to E-Com Plus Graphs API documentation\n\n# Setting up\nInstall [Hercule](https:\/\/github.com\/jamesramsay\/hercule)\nand [Drafter](https:\/\/github.com\/apiaryio\/drafter.js),\nthen give permissions to shell script:\n\n```bash\nchmod +x build.sh\n```\n\n## Build doc files\n```bash\n.\/build.sh\n```\n\n# Online documentation\nhttps:\/\/developers.e-com.plus\/reference\/graphs\n\nhttps:\/\/ecomgraphs.docs.apiary.io\/#\n"
 }

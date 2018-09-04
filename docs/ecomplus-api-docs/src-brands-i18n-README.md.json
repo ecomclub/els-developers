@@ -1,0 +1,5 @@
+{
+    "repo": "ecomplus-api-docs",
+    "path": "src\/brands\/i18n\/README.md",
+    "markdown": "## Group Brand i18n\n\n`.brands.i18n`\n\nUse the **i18n** subresource to read and update\ntranslations for an specific brand name, with up to 10 languages\n\n### Brand i18n Object [\/brands\/schema\/i18n.json]\n\n:[](.brand-i18n-object.apib)\n\n#### JSON Schema [GET]\n\n:[](.json-schema.apib)\n\n### i18n of a Brand [\/brands\/{brand}\/i18n.json]\n\n*\/brands\/[_id]\/i18n.json*\n\n> Authentication<br>_GET_, _PATCH_: **required**\n\n#### Read Brand Name Translations [GET]\n\n:[](.read-brand-name-translations.apib)\n\n#### Edit Brand Name Translations [PATCH]\n\n:[](.edit-brand-name-translations.apib)\n"
+}
