@@ -105,12 +105,15 @@ class GitToEls
             // remove all saved directories (repos)
             $olds = scandir($this->dir);
             foreach ($olds as $path) {
-                $repoDir = $this->dir . '/' . $path;
-                if (filetype($repoDir) === 'dir') {
-                    $objects = scandir($repoDir);
-                    foreach ($objects as $object) {
-                        $filename = $repoDir . '/' . $object;
-                        if (is_file($filename)) unlink($filename);
+                // escape parent directories . and ..
+                if ($path[0] !== '.') {
+                    $repoDir = $this->dir . $path;
+                    if (@filetype($repoDir) === 'dir') {
+                        $objects = scandir($repoDir);
+                        foreach ($objects as $object) {
+                            $filename = $repoDir . '/' . $object;
+                            if (is_file($filename)) unlink($filename);
+                        }
                     }
                 }
             }
